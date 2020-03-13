@@ -1,0 +1,26 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Component</title>
+</head>
+<body>
+    <div id="app">
+        <belajar-component></belajar-component>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        Vue.component('belajar-component',{
+            data(){
+                return{
+                    message : "Hello world"
+                }
+            },
+            template : "<h1>{{message}}</h1>"
+        });
+        var vm = new Vue({
+            el:"#app",
+        });
+    </script>
+</body>
+</html>

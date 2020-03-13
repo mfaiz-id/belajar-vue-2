@@ -1,0 +1,40 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hook Mounted dan Before Mounted</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="keyword" placeholder="ketikkan kata
+        kunci">
+        <ul>
+            <li v-for="(book, index) of filterBooks" :key="index">
+                {{ book }}
+            </li>
+        </ul>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                keyword: '',
+                books : [
+                    'C++ High Performance',
+                    'Mastering Linux Security and Hardening', 'Python Programming Blueprints',
+                    'Mastering PostgreSQL 10'
+                ]
+            },
+            computed: {
+                filterBooks() {
+                    return this.books.filter((book)=>{
+                        return book.includes(this.keyword)
+                    })
+                }
+            }
+        });
+    </script>
+</body>
+</html>

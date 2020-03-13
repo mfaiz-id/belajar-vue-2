@@ -1,0 +1,30 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Directive</title>
+</head>
+<body>
+    <div id="app">
+        <h3 v-on:mouseover.once="info('Mas Faiz')">Hover Me</h3>
+        <input type="text" @keypress.enter="info('di enter')">
+        <p v-bind:style="{'color':warna}">Ini di binding</p>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+
+        vm = new Vue({
+            el :'#app',
+            data:{
+                harga : 100000, 
+                warna:'red'
+            },
+            methods: {
+                info(name){
+                    alert(name);
+                }
+            },
+        });
+    </script>
+</body>
+</html>

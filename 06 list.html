@@ -1,0 +1,100 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List</title>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="(book, index) in books">{{index+1 +' '+book}}</li>
+        </ul>
+        <ul>
+            <li v-for="(isi,key) of object_book">{{key+': '+isi}}</li>
+        </ul>
+        <p>{{object_book.authors}}</p>
+        <table cellpadding="10" cellspacing="0" border="1">
+            <tr>
+                <th>NO</th>
+                <th>id</th>
+                <th>title</th>
+                <th>description</th>
+                <th>authors</th>
+                <th>publish_year</th>
+                <th>price</th>
+                <th>image</th>
+            </tr>
+            <tr v-for="(item, index) in book_collections" :key="index">
+                <td>{{index+1}}</td>
+                <td>{{item.id}}</td>
+                <td>{{item.title}}</td>
+                <td>{{item.description}}</td>
+                <td>{{item.authors}}</td>
+                <td>{{item.publish_year}}</td>
+                <td>{{item.price}}</td>
+                <td>{{item.image}}</td>
+            </tr>
+        </table>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                books:[
+                    "Sirah Nabawiyah",
+                    "Machine Learning",
+                    "Rahasia Hati"
+                ],
+                object_book:{
+                    id: 99,
+                    title: 'C++ High Performance',
+                    description: 'Write code that scales across CPU registers, multi-core, and machine clusters',
+                    authors: 'Viktor Sehr, Björn Andrist',
+                    publish_year: 2018,
+                    price: 100000,
+                },
+                book_collections : [
+                        {
+                            id: 99,
+                            title: 'C++ High Performance',
+                            description: 'Write code that scales across CPU registers, multi-core, and machine clusters',
+                            authors: 'Viktor Sehr, Björn Andrist',
+                            publish_year: 2018,
+                            price: 100000,
+                            image: 'c++-high-performance.png'
+                        },
+                        {
+                            id: 100,
+                            title: 'Mastering Linux Security and Hardening',
+                            description: 'A comprehensive guide to mastering the art of preventing your Linux system from getting compromised',
+                            authors: 'Donald A. Tevault',
+                            publish_year: 2018,
+                            price: 125000,
+                            image: 'mastering-linux-security-and-hardening.png'
+                        },
+                        {
+                            id: 101,
+                            title: 'Mastering PostgreSQL 10',
+                            description: 'Master the capabilities of PostgreSQL 10 to efficiently manage and maintain your database',
+                            authors: 'Hans-Jürgen Schönig',
+                            publish_year: 2016,
+                            price: 90000,
+                            image: 'mastering-postgresql-10.png'
+                        },
+                        {
+                            id: 102,
+                            title: 'Python Programming Blueprints',
+                            description: 'How to build useful, real-world applications in the Python programming language',
+                            authors: 'Daniel Furtado, Marcus Pennington',
+                            publish_year: 2017,
+                            price: 75000,
+                            image: 'python-programming-blueprints.png'
+                        },
+                ]
+            },
+        });
+    </script>
+</body>
+</html>

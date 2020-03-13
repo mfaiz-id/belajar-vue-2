@@ -1,0 +1,28 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hook Created dan Before Created</title>
+</head>
+<body>
+    <div id="app">
+        {{message}}
+    </div>
+    <script src="vue.js"></script>
+    <script>
+
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                message:"Hello World"
+            },
+            beforeCreate(){
+                console.log("before create " + this.message)
+            },
+            created(){
+                console.log("Created "+this.message);
+            }
+        });
+    </script>
+</body>
+</html>

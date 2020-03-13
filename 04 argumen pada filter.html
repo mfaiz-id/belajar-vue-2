@@ -1,0 +1,33 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Argumen Pada Filter</title>
+</head>
+<body>
+    <div id="app">
+        <p>{{harga | format_uang('IDR')}}</p>
+        <p>{{harga | format_uang('USD')}}</p>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+
+        vm = new Vue({
+            el :'#app',
+            data:{
+                harga : 100000 
+            },
+            filters:{
+                format_uang(value,currency){
+                    var formatter = new Intl.NumberFormat('id-ID', {
+                                    style: 'currency',
+                                    currency: currency,
+                                    minimumFractionDigits: 2,
+                    });
+                    return formatter.format(value)
+                }
+            }
+        });
+    </script>
+</body>
+</html>

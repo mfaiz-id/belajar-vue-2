@@ -1,0 +1,32 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hook Updated dan Before Updated</title>
+</head>
+<body>
+    <div id="app">
+        {{message}}
+    </div>
+    <script src="vue.js"></script>
+    <script>
+
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                message:"Hello World"
+            },
+            beforeUpdate(){
+                console.log("Before Update (element saat data belum di update) "+ this.$el.textContent);
+            },
+            updated(){
+                console.log("Mounted (element saat data setelah di update) "+ this.$el.textContent);
+            }
+        });
+        vm.$watch('message', function name(newValue, oldValue) {
+            console.log("Variable message diubah semula "+oldValue+" menjadi "+newValue);
+        })
+        vm.message = "Selamat Datang";
+    </script>
+</body>
+</html>

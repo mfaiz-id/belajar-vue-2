@@ -1,0 +1,30 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penulisan Template (Directive dan Binding)</title>
+    <style>
+        .title{
+            color:red
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <span v-once>{{message}}</span>
+        <span v-html="message"></span>
+        <h1 v-bind:class="class_h1" v-html="message"></h1>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                message:"<b>Hello World</b>",
+                class_h1:"title"
+            },
+        });
+    </script>
+</body>
+</html>

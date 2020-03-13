@@ -1,0 +1,34 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Properti Filter</title>
+</head>
+<body>
+    <div id="app">
+        <h3>{{nama_lengkap | filter_upper}}</h3>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+
+        vm = new Vue({
+            el :'#app',
+            data:{
+                nama_depan : "Moch",
+                nama_tengah : "Faizal", 
+                nama_belakang : "Ansyori" 
+            },
+            computed: {
+                nama_lengkap : function(){
+                    return this.nama_depan+" "+this.nama_tengah+" "+this.nama_belakang;
+                }   
+            },
+            filters:{
+                filter_upper(text){
+                    return text.toUpperCase();
+                }
+            }
+        });
+    </script>
+</body>
+</html>

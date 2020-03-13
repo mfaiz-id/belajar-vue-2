@@ -1,0 +1,29 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hook Destroy dan Before Destroy</title>
+</head>
+<body>
+    <div id="app">
+        {{message}}
+    </div>
+    <script src="vue.js"></script>
+    <script>
+
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                message:"Hello World"
+            },
+            beforeDestroy(){
+                console.log("before destroy")
+            },
+            destroyed(){
+                console.log("Destroy");
+            }
+        });
+        vm.$destroy()
+    </script>
+</body>
+</html>

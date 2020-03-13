@@ -1,0 +1,89 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>07 Form</title>
+</head>
+<body>
+    <div id="app">
+        <form>
+            <input 
+                type="text"
+                name="title"
+                :value="title"
+                @input="title = $event.target.value"
+            >
+            <input 
+                type="text"
+                name="title"
+                v-model="title"
+                placeholder="Pakai v-model"
+            >
+            <p>{{title}}</p>
+
+            <hr>
+            <h3>V Model</h3>
+
+            <input type="number" name="price" v-model.number="price">
+            <br><br>
+            <input type="text" name="title" v-model.trim="title"
+            placeholder="masukkan judul"> "{{ title }}"
+            <hr>
+            <h3>Radio</h3>
+            Paket <br>
+            <input type="radio" name="bukuA" value="A" v-model="paket">
+            <label for="bukuA">Buku Laravel</label>
+            <br>
+            <input type="radio" name="bukuB" value="B" v-model="paket">
+            <label for="bukuB">Buku Vue</label>
+            <br>
+            <input type="radio" name="bukuAB" value="AB" v-model="paket">
+            <label for="bukuAB">Buku Laravel + Vue</label>
+            <br>
+            <span>Pilihan paket: {{ paket }}</span>
+            <hr>
+            <h3>Select</h3>
+            <select name="category" v-model="category">
+                <option disabled value="">Please select one</option>
+                <option>Graphics Programming</option>
+                <option>Mobile Application Development</option>
+                <option>Virtual and Augmented Reality</option>
+            </select>
+            <span>{{category}}</span>
+
+            <hr>
+            <h3>Radio Button</h3>
+            Hobi <br>
+            <input type="checkbox" name="hobby1" value="nonton" v-model="hobbies">
+            <label for="hobby1">Nonton</label>
+            <input type="checkbox" name="hobby2" value="jalan" v-model="hobbies">
+            <label for="hobby2">Jalan</label>
+            <input type="checkbox" name="hobby3" value="makan" v-model="hobbies">
+            <label for="hobby3">Makan</label>
+            <br>
+            <span>Pilihan hobi: {{ hobbies }}</span>
+            <hr>
+            <select v-model="categories" multiple>
+            <option value="01">Graphics Programming</option>
+            <option value="02">Mobile Application Development</option>
+            <option value="03">Virtual and Augmented Reality</option>
+            </select>
+            <span>Selected: {{ categories }}</span>
+        </form>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                title:"",
+                paket: "",
+                category:"",
+                hobbies: [],
+                categories: []
+            },
+        });
+    </script>
+</body>
+</html>
