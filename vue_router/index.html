@@ -1,0 +1,40 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hook Updated dan Before Updated</title>
+</head>
+<body>
+    <div id="app">
+        <p>
+            <router-link to="/">Home</router-link>
+            <router-link to="/about">About</router-link>
+        </p>
+        <router-view></router-view>
+    </div>
+    <script src="vue.js"></script>
+    <script src="vue-router.js"></script>
+    <script>
+        const Home = {template:'<div>Halaman Home</div>'}
+        const About = {template:'<div>Halaman About</div>'}
+
+        const routes = [
+            { path: '/', component: Home, alias: '/home' },
+            { path: '/about', component: About },
+            { path: '*', redirect: '/'}
+        ]
+
+        const router = new VueRouter({
+            routes
+        });
+
+        var vm = new Vue({
+            el:"#app",
+            router,
+            data:{
+                message:"Hello World"
+            },
+        });
+    </script>
+</body>
+</html>

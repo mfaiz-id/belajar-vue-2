@@ -1,0 +1,111 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Component</title>
+    <style>
+        .card {
+            background: #efefef;
+            border:1px solid #ddd;
+            margin-right:5px;
+            padding:5px;
+            width: 200px;
+            float:left;
+        }
+        h3{
+            min-height: 45px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h3>Yang Dipilih  {{d_selected_book}}</h3>
+        <br>
+        <custom-input v-model="d_selected_book"></custom-input>
+        <br>
+        <book-component
+            v-for="book in books" 
+            :key="book.id"
+            :p_book = "book"
+            @selected = "d_selected_book = $event"
+        >
+        </book-component>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        Vue.component('custom-input', {
+            props: ['value'],
+            template: `
+                <input
+                :value="value"
+                @input="$emit('input', $event.target.value)"
+                >
+            `
+        });
+        var BookComponent = {
+            data() {
+                return {
+                    classCard : "card"
+                }
+            },
+            props : ['p_book'],
+            template : `
+                    <div :class="classCard">
+                        <h3>{{p_book.title}}</h3>
+                        <img :src="'asset/books/'+p_book.image" style="width:100%">
+                        <p v-html="p_book.description"></p>
+                        <button @click="$emit('selected', p_book.title)">Select</button>
+                    </div>
+            `
+        }
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                d_selected_book : "",
+                books : [
+                    {
+                        id: 99,
+                        title: 'C++ High Performance',
+                        description: 'Write code that scales across CPU registers, multi-core, and machine clusters',
+                        authors: 'Viktor Sehr, Björn Andrist',
+                        publish_year: 2018,
+                        price: 100000,
+                        image: 'c.png'
+                    },
+                    {
+                        id: 100,
+                        title: 'Mastering Linux Security and Hardening',
+                        description: 'A comprehensive guide to mastering the art of preventing your Linux system from getting compromised',
+                        authors: 'Donald A. Tevault',
+                        publish_year: 2018,
+                        price: 125000,
+                        image: 'linux.png'
+                    },
+                    {
+                        id: 101,
+                        title: 'Mastering PostgreSQL 10',
+                        description: 'Master the capabilities of PostgreSQL 10 to efficiently manage and maintain your database',
+                        authors: 'Hans-Jürgen Schönig',
+                        publish_year: 2016,
+                        price: 90000,
+                        image: 'sql.png'
+                    },
+                    {
+                        id: 102,
+                        title: 'Python Programming Blueprints',
+                        description: 'How to build useful, real-world applications in the Python programming language',
+                        authors: 'Daniel Furtado, Marcus Pennington',
+                        publish_year: 2017,
+                        price: 75000,
+                        image: 'python.png'
+                    }
+                ]
+            },
+            components : {
+                'book-component' : BookComponent
+            }
+
+        });
+    </script>
+</body>
+</html>

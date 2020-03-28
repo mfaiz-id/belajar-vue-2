@@ -1,0 +1,59 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Props (Passing Data Ke Component)</title>
+    <style>
+        .card {
+            background: #efefef;
+            border:1px solid #ddd;
+            margin-right:5px;
+            padding:5px;
+            width: 200px;
+            float:left;
+        }
+        h3{
+            min-height: 45px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <book
+            p_judul = "Bahagia Merayakan Cinta"
+            p_deskripsi = "Ini Deskripsinya"
+            p_image = "cover-book.jpg"
+            :p_harga = "v_harga"
+        >
+        </book>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        var BookComponent = {
+            data() {
+                return {
+                    classCard : 'card'
+                }
+            },
+            props:['p_judul','p_deskripsi','p_image','p_harga'],
+            template : `
+                        <div :class="classCard">
+                            <h3>{{p_judul}}</h3>
+                            <img :src="'asset/books/'+p_image" style="widthL100%" />
+                            <p v-html="p_deskripsi"></p>
+                            <p>{{p_harga}}</p>
+                        </div>
+            `
+        }
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                v_harga : "Rp. 90.000"
+            },
+            components:{
+                'book' : BookComponent
+            }
+        });
+    </script>
+</body>
+</html>

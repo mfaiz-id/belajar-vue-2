@@ -1,0 +1,56 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hook Updated dan Before Updated</title>
+    <style>
+        .fade-enter-active, .fade-leave-active {
+            transition: opacity .5s;
+        }
+        .fade-enter, .fade-leave-to {
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <p>
+            <router-link to="/">Home</router-link>
+            <router-link to="/about">About</router-link>
+            <router-link to="/books">Books</router-link>
+        </p>
+        <transition name="slide" mode="out-in">
+            <router-view></router-view>
+        </transition>
+    </div>
+    <script src="vue.js"></script>
+    <script src="vue-router.js"></script>
+    <script type="module">
+        import {BooksComponent} from './BooksComponent.js'
+        import { BookComponent } from './BookComponent.js'
+
+        const Home = {template:'<div>Halaman Home</div>'}
+        const About = {template:'<div>Halaman About</div>'}
+
+        const routes = [
+            { path: '/', component: Home, alias: '/home' },
+            { path: '/about', component: About },
+            { path: '/books', component:BooksComponent},
+            { path: '/book/:id', component:BookComponent},
+            { path: '*', redirect: '/'}
+        ]
+
+        const router = new VueRouter({
+            routes
+        });
+
+        var vm = new Vue({
+            el:"#app",
+            router,
+            data:{
+                message:"Hello World"
+            },
+        });
+    </script>
+</body>
+</html>
